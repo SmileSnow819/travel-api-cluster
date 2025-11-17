@@ -1,0 +1,184 @@
+/* Natours 全局样式 */
+:root {
+  --section-rotate: 9vw;
+  --primary-color: #55c57a;
+  --primary-dark: #28b487;
+  --primary-light: #7dd56f;
+  --text-color: #777;
+  --text-dark: #444;
+  --background-light: #f7f7f7;
+  --white: #fff;
+}
+
+/* 基础样式 */
+body {
+  line-height: 1.6;
+  font-weight: 300;
+  font-family: 'Lato', sans-serif;
+  color: var(--text-color);
+  background-color: var(--background-light);
+}
+
+/* 工具类 */
+.ma-bt-md {
+  margin-bottom: 3rem !important;
+}
+
+.ma-bt-lg {
+  margin-bottom: 3.5rem !important;
+}
+
+.right {
+  text-align: right !important;
+}
+
+.line {
+  margin: 6rem 0;
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+/* 标题样式 */
+.heading-secondary {
+  font-size: 2.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: linear-gradient(
+    to right,
+    var(--primary-light),
+    var(--primary-dark)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.1rem;
+  line-height: 1.3;
+  display: inline-block;
+}
+
+.heading-secondary--error {
+  background: linear-gradient(to right, #ff7730, #eb4d4b);
+  font-size: 3.5rem;
+}
+
+.heading-primary,
+.heading-tertiary {
+  color: var(--white);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+
+.heading-primary span,
+.heading-tertiary span {
+  padding: 1rem 1.5rem;
+  line-height: 1;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  background: linear-gradient(
+    to bottom right,
+    rgba(125, 213, 111, 0.85),
+    rgba(40, 180, 135, 0.85)
+  );
+}
+
+.heading-primary {
+  font-size: 5rem;
+  text-align: center;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.heading-tertiary {
+  font-size: 2.75rem;
+  text-align: right;
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  width: 70%;
+  z-index: 10;
+}
+
+/* 按钮样式 */
+.btn {
+  font-size: 1.6rem;
+  padding: 1.4rem 3rem;
+  border-radius: 10rem;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.4s;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:active {
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.btn:focus {
+  outline: none;
+  background-color: #2e864b;
+}
+
+.btn--white {
+  background-color: var(--white);
+  color: var(--text-color);
+}
+
+.btn--green {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn--small {
+  padding: 1.25rem 3rem !important;
+  font-size: 1.4rem !important;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .heading-primary {
+    font-size: 3.5rem;
+    width: 90%;
+  }
+
+  .heading-secondary {
+    font-size: 1.8rem;
+  }
+}
+
+/* 覆盖Vuetify默认样式 */
+.v-application {
+  font-family: 'Lato', sans-serif !important;
+}
+
+.v-btn {
+  text-transform: none !important;
+  font-weight: 400 !important;
+}
+
+/* 自定义颜色类 */
+.bg-natours-primary {
+  background-color: var(--primary-color) !important;
+}
+
+.bg-natours-gradient {
+  background: linear-gradient(
+    to right bottom,
+    var(--primary-light),
+    var(--primary-dark)
+  ) !important;
+}
+
+.text-natours-primary {
+  color: var(--primary-color) !important;
+}
