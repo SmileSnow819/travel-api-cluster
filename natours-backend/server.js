@@ -21,18 +21,12 @@ console.log(
 );
 
 mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
-    useUnifiedTopology: true,
-  })
+  .connect(DB)
   .then(() => {
-    // console.log(con.connections)
-    // console.log('数据库连接成功！');
+    console.log('数据库连接成功！');
   })
   .catch((err) => {
-    console.log(err);
+    console.log('数据库连接失败:', err);
   });
 
 const port = process.env.PORT || 3000;

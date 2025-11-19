@@ -70,6 +70,14 @@ app.use((req, res, next) => {
 });
 
 // 3) routers
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    message: 'Natours API is running!',
+    documentation: '/api/v1/tours',
+  });
+});
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
