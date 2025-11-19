@@ -37,8 +37,14 @@ app.use('/api', limiter);
 //Body parse，reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
 
-// 导入并使用 cors
-app.use(cors());
+// 导入并使用 cors - 允许所有来源访问
+app.use(
+  cors({
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  }),
+);
 
 //Data sanitization against NOSQL query injetion  sanitization=>净化 against=>反对，防止
 app.use(mongoSanitize());
