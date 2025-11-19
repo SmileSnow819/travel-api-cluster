@@ -17,6 +17,9 @@ const app = express();
 
 // 1) 全局中间件
 
+// 最简单的 CORS 配置
+app.use(cors());
+
 // set security HTTP headers security 安全
 app.use(helmet());
 
@@ -36,21 +39,6 @@ app.use('/api', limiter);
 
 //Body parse，reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
-
-// 导入并使用 cors - 允许所有来源访问
-app.use(
-  cors({
-    origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    credentials: false,
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  }),
-);
-
-// 手动处理 OPTIONS 预检请求
-app.options('*', cors());
 
 //Data sanitization against NOSQL query injetion  sanitization=>净化 against=>反对，防止
 app.use(mongoSanitize());

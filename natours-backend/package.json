@@ -4,11 +4,10 @@
   "description": "Learning",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "start:prod": "cross-env NODE_ENV=production nodemon server.js",
-    "debug": "ndb server.js",
+    "start": "node server.js",
     "dev": "nodemon server.js",
-    "prod": "node server.js",
+    "start:prod": "cross-env NODE_ENV=production node server.js",
+    "debug": "ndb server.js",
     "build": "echo 'No build step required for Node.js backend'"
   },
   "author": "snow_snow",
