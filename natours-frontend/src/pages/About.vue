@@ -98,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import logo from '/img/logo-green.png';
+import logo from '/favicon.png';
 // 页面逻辑可以在这里添加
 </script>
 

@@ -41,10 +41,16 @@ app.use(express.json({ limit: '10kb' }));
 app.use(
   cors({
     origin: '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: false,
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
   }),
 );
+
+// 手动处理 OPTIONS 预检请求
+app.options('*', cors());
 
 //Data sanitization against NOSQL query injetion  sanitization=>净化 against=>反对，防止
 app.use(mongoSanitize());

@@ -6,7 +6,7 @@
         <v-col cols="12" md="4" class="footer-section">
           <div class="footer-logo mb-4">
             <v-img
-              :src="logoGreen"
+              :src="logo"
               alt="Natours 标志"
               height="40"
               width="auto"
@@ -89,9 +89,8 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-
+import logo from '/favicon.png';
 // Logo路径
-const logoGreen = '/img/logo-green.png';
 
 // 当前年份
 const currentYear = computed(() => new Date().getFullYear());
