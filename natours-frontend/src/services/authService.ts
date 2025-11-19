@@ -27,6 +27,9 @@ class AuthService {
     const response = await api.post<AuthResponse>('/users/login', credentials);
     if (response.data.token) {
       localStorage.setItem('token', response.data.token);
+      if (response.data.data?.user) {
+        localStorage.setItem('user', JSON.stringify(response.data.data.user));
+      }
     }
     return response.data;
   }

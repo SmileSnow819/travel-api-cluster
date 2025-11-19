@@ -30,17 +30,19 @@ export const useAuthStore = defineStore('auth', () => {
     try {
       const loginData: LoginRequest = { email, password };
       const response = await authService.login(loginData);
-      user.value = response.data?.user || null;
+
+      // 登录成功后，从本地存储获取用户信息
+      const storedUser = authService.getCurrentUserFromStorage();
+      user.value = storedUser || response.data?.user || null;
       token.value = response.token;
-      if (token.value) {
-        localStorage.setItem('token', token.value);
-      }
+
       return response;
     } catch (error) {
       // 清除可能已设置的状态
       user.value = null;
       token.value = null;
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       throw error; // 重新抛出错误让调用方处理
     } finally {
       isLoading.value = false;

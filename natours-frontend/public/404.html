@@ -1,19 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <title>Natours - Redirecting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Natours - 页面重定向</title>
     <script type="text/javascript">
       // GitHub Pages SPA 重定向
-      sessionStorage.redirect = location.href;
-      location.replace('/natours/');
+      const pathSegments = window.location.pathname.split('/');
+      const basePath = pathSegments[1] === 'natours' ? '/natours' : '';
+      const redirectPath = basePath + '/index.html';
+      window.location.replace(redirectPath);
     </script>
   </head>
   <body>
-    <p>Redirecting to Natours application...</p>
-    <p>
-      If you are not redirected automatically,
-      <a href="/natours/">click here</a>.
-    </p>
+    <div
+      style="text-align: center; padding: 50px; font-family: Arial, sans-serif"
+    >
+      <h1>正在重定向到 Natours 应用...</h1>
+      <p>如果页面没有自动跳转，请 <a href="/natours/">点击这里</a>。</p>
+    </div>
   </body>
 </html>
