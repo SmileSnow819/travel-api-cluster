@@ -11,7 +11,15 @@ dotenv.config({ path: './config.env' });
 const app = require('./app');
 
 //连接数据库
-const DB = process.env.DATABASE_LOCAL;
+const DB =
+  process.env.NODE_ENV === 'production'
+    ? process.env.DATABASE_CLOUD
+    : process.env.DATABASE_LOCAL;
+
+console.log(
+  `连接数据库: ${process.env.NODE_ENV === 'production' ? '云数据库' : '本地数据库'}`,
+);
+
 mongoose
   .connect(DB, {
     useNewUrlParser: true,

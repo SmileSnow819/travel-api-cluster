@@ -5,6 +5,16 @@ const routes = [
     component: () => import('@/pages/Home.vue'),
   },
   {
+    path: '/about',
+    name: 'About',
+    component: () => import('@/pages/About.vue'),
+  },
+  {
+    path: '/contact',
+    name: 'Contact',
+    component: () => import('@/pages/Contact.vue'),
+  },
+  {
     path: '/tour/:slug',
     name: 'TourDetail',
     component: () => import('@/pages/TourDetail.vue'),

@@ -56,16 +56,16 @@
           </template>
           <v-list class="user-dropdown">
             <v-list-item :to="'/account'" class="dropdown-item">
-              <v-list-item-icon>
+              <template v-slot:prepend>
                 <v-icon icon="mdi-account"></v-icon>
-              </v-list-item-icon>
+              </template>
               <v-list-item-title>我的账户</v-list-item-title>
             </v-list-item>
             <v-divider></v-divider>
             <v-list-item @click="logout" class="dropdown-item">
-              <v-list-item-icon>
+              <template v-slot:prepend>
                 <v-icon icon="mdi-logout"></v-icon>
-              </v-list-item-icon>
+              </template>
               <v-list-item-title>退出登录</v-list-item-title>
             </v-list-item>
           </v-list>
@@ -115,9 +115,9 @@
         @click="drawer = false"
         class="mobile-nav-item"
       >
-        <v-list-item-icon>
+        <template v-slot:prepend>
           <v-icon :icon="item.icon"></v-icon>
-        </v-list-item-icon>
+        </template>
         <v-list-item-title class="text-body-1">{{
           item.title
         }}</v-list-item-title>
@@ -130,9 +130,9 @@
           @click="drawer = false"
           class="mobile-nav-item"
         >
-          <v-list-item-icon>
+          <template v-slot:prepend>
             <v-icon icon="mdi-login"></v-icon>
-          </v-list-item-icon>
+          </template>
           <v-list-item-title class="text-body-1">登录</v-list-item-title>
         </v-list-item>
         <v-list-item
@@ -140,9 +140,9 @@
           @click="drawer = false"
           class="mobile-nav-item"
         >
-          <v-list-item-icon>
+          <template v-slot:prepend>
             <v-icon icon="mdi-account-plus"></v-icon>
-          </v-list-item-icon>
+          </template>
           <v-list-item-title class="text-body-1">注册</v-list-item-title>
         </v-list-item>
       </template>
@@ -160,7 +160,11 @@ const drawer = ref(false);
 
 const user = computed(() => authStore.user);
 
-const navItems = [{ title: '所有旅游', to: '/', icon: 'mdi-map-marker' }];
+const navItems = [
+  { title: '所有旅游', to: '/', icon: 'mdi-map-marker' },
+  { title: '关于我们', to: '/about', icon: 'mdi-information' },
+  { title: '联系我们', to: '/contact', icon: 'mdi-email' },
+];
 
 const toggleDrawer = () => {
   drawer.value = !drawer.value;

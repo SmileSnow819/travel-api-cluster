@@ -1,7 +1,8 @@
 import axios from 'axios';
 
-// API基础配置
-const API_BASE_URL = 'http://localhost:8000/api/v1';
+// API基础配置 - 根据环境变量切换
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 // 创建axios实例
 const api = axios.create({
