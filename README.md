@@ -5,7 +5,7 @@
 ## 🚀 在线演示
 
 - **前端应用**: [https://smilesnow819.github.io/natours/](https://smilesnow819.github.io/natours/)
-- **后端API**: [https://natours-backend-8hklz2qxl-smilesnow819s-projects.vercel.app/](https://natours-backend-8hklz2qxl-smilesnow819s-projects.vercel.app/)
+- **后端API**: [访问 Natours Backend](https://natours-backend-ox2795hvv-smilesnow819s-projects.vercel.app/)
 
 ## ✨ 功能特性
 
