@@ -102,9 +102,10 @@ interface Props {
 
 const props = defineProps<Props>();
 
-// 计算旅游图片URL
+// 计算旅游图片URL - 在 GitHub Pages 上使用相对路径
 const tourImage = computed(() => {
-  return `/img/tours/${props.tour.imageCover}`;
+  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  return `${basePath}/img/tours/${props.tour.imageCover}`;
 });
 
 // 格式化日期
