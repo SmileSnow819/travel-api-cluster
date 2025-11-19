@@ -7,7 +7,7 @@
           <v-row align="center">
             <v-col cols="12" md="4" class="text-center">
               <v-img
-                src="/img/logo-green.png"
+                :src="logo"
                 alt="Natours Logo"
                 height="120"
                 contain
@@ -98,6 +98,7 @@
 </template>
 
 <script setup lang="ts">
+import logo from '/img/logo-green.png';
 // 页面逻辑可以在这里添加
 </script>
 

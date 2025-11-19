@@ -45,7 +45,7 @@
             >
               <v-avatar size="36" class="mr-2">
                 <v-img
-                  :src="user.photo || '/img/users/default.jpg'"
+                  :src="user.photo || defaultAvatar"
                   alt="User Avatar"
                   class="avatar-img"
                 ></v-img>
@@ -154,6 +154,7 @@
 import { ref, computed } from 'vue';
 import { useAuthStore } from '@/store/auth';
 import logo from '/favicon.png';
+import defaultAvatar from '/img/users/default.jpg';
 
 const authStore = useAuthStore();
 const drawer = ref(false);
