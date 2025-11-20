@@ -15,6 +15,5 @@ declare module 'vue' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TourCard: typeof import('./src/components/TourCard.vue')['default']
-    TourMap: typeof import('./src/components/TourMap.vue')['default']
   }
 }

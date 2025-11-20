@@ -72,7 +72,8 @@ const deleting = ref(false);
 
 // 计算用户照片URL
 const userPhoto = computed(() => {
-  return `${import.meta.env.BASE_URL}img/users/${props.review.user.photo}`;
+  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  return `${basePath}/img/users/${props.review.user.photo}`;
 });
 
 // 检查是否是自己的评论

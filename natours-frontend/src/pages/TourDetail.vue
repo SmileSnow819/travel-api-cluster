@@ -121,7 +121,7 @@
           class="picture-box"
         >
           <v-img
-            :src="`/img/tours/${img}`"
+            :src="tourImage(img)"
             :alt="`${tour.name} 图片 ${index + 1}`"
             class="picture-box-img"
             :class="`picture-box-img--${index + 1}`"
@@ -213,14 +213,14 @@
           </div>
           <v-img
             v-if="tour.images[1]"
-            :src="`/img/tours/${tour.images[1]}`"
+            :src="tourImage(tour.images[1])"
             alt="旅游图片"
             class="cta-img cta-img--1"
             cover
           ></v-img>
           <v-img
             v-if="tour.images[2]"
-            :src="`/img/tours/${tour.images[2]}`"
+            :src="tourImage(tour.images[2])"
             alt="旅游图片"
             class="cta-img cta-img--2"
             cover
@@ -280,10 +280,16 @@ const user = ref<User | null>(null);
 const reviews = ref<Review[]>([]);
 const loadingReviews = ref(false);
 
+// 计算旅游图片URL - 统一处理路径
+const tourImage = (imageName: string) => {
+  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  return `${basePath}/img/tours/${imageName}`;
+};
+
 // 计算旅游封面图片URL
 const tourImageCover = computed(() => {
   if (!tour.value) return '';
-  return `/img/tours/${tour.value.imageCover}`;
+  return tourImage(tour.value.imageCover);
 });
 
 // 格式化日期
@@ -297,7 +303,8 @@ const formatDate = (dateString: string) => {
 
 // 获取导游照片URL
 const guidePhoto = (guide: { photo: string }) => {
-  return `${import.meta.env.BASE_URL}img/users/${guide.photo}`;
+  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  return `${basePath}/img/users/${guide.photo}`;
 };
 
 // 获取导游角色显示文本
