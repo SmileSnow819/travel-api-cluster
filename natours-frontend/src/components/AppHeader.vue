@@ -45,7 +45,7 @@
             >
               <v-avatar size="36" class="mr-2">
                 <v-img
-                  :src="user.photo || defaultAvatar"
+                  :src="getUserPhotoUrl(user.photo || 'default.jpg')"
                   alt="User Avatar"
                   class="avatar-img"
                 ></v-img>
@@ -154,12 +154,16 @@
 import { ref, computed } from 'vue';
 import { useAuthStore } from '@/store/auth';
 import logo from '/favicon.png';
-import defaultAvatar from '/img/users/default.jpg';
 
 const authStore = useAuthStore();
 const drawer = ref(false);
 
 const user = computed(() => authStore.user);
+
+// 获取用户头像URL（后端返回的 photo 包含 'default.jpg' 或具体的用户头像文件名）
+const getUserPhotoUrl = (photo: string) => {
+  return `${import.meta.env.BASE_URL}img/users/${photo}`;
+};
 
 const navItems = [
   { title: '所有旅游', to: '/', icon: 'mdi-map-marker' },

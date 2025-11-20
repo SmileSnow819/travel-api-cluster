@@ -16,11 +16,22 @@ export const useAuthStore = defineStore('auth', () => {
       try {
         const userData = await authService.getCurrentUser();
         user.value = userData;
+        // 确保用户信息保存到localStorage
+        if (userData) {
+          localStorage.setItem('user', JSON.stringify(userData));
+        }
       } catch {
         // Token无效，清除本地存储
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         token.value = null;
         user.value = null;
+      }
+    } else {
+      // 如果没有token，尝试从localStorage加载用户信息
+      const storedUser = authService.getCurrentUserFromStorage();
+      if (storedUser) {
+        user.value = storedUser;
       }
     }
   };
@@ -35,6 +46,11 @@ export const useAuthStore = defineStore('auth', () => {
       const storedUser = authService.getCurrentUserFromStorage();
       user.value = storedUser || response.data?.user || null;
       token.value = response.token;
+
+      // 确保token保存到localStorage
+      if (token.value) {
+        localStorage.setItem('token', token.value);
+      }
 
       return response;
     } catch (error) {

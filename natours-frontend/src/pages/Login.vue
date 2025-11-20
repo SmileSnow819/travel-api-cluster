@@ -163,7 +163,8 @@ const handleLogin = async () => {
 
     // 延迟跳转到首页，让用户看到成功提示
     setTimeout(() => {
-      router.push('/');
+      // 使用replace而不是push，确保页面状态正确更新
+      router.replace('/');
     }, 1000);
   } catch (error: unknown) {
     console.error('登录失败:', error);

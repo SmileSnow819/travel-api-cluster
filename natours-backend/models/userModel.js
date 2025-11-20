@@ -19,7 +19,7 @@ const userSchema = new mongoose.Schema({
   },
   photo: {
     type: String,
-    default: '默认头像',
+    default: 'default.jpg',
   },
   password: {
     type: String,

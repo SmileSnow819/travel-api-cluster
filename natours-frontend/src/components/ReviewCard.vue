@@ -72,7 +72,7 @@ const deleting = ref(false);
 
 // 计算用户照片URL
 const userPhoto = computed(() => {
-  return `/img/users/${props.review.user.photo}`;
+  return `${import.meta.env.BASE_URL}img/users/${props.review.user.photo}`;
 });
 
 // 检查是否是自己的评论

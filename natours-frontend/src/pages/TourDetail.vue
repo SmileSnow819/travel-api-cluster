@@ -297,7 +297,7 @@ const formatDate = (dateString: string) => {
 
 // 获取导游照片URL
 const guidePhoto = (guide: { photo: string }) => {
-  return `/img/users/${guide.photo}`;
+  return `${import.meta.env.BASE_URL}img/users/${guide.photo}`;
 };
 
 // 获取导游角色显示文本

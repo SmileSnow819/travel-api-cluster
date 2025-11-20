@@ -200,7 +200,7 @@ const passwordData = ref({
 
 // 计算用户照片URL
 const userPhoto = computed(() => {
-  return `/img/users/${user.value.photo}`;
+  return `${import.meta.env.BASE_URL}img/users/${user.value.photo}`;
 });
 
 // 导航项
