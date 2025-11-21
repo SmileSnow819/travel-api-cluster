@@ -9,7 +9,7 @@
               :src="logo"
               alt="Natours 标志"
               height="40"
-              width="auto"
+              width="300px"
               class="logo-img"
             ></v-img>
           </div>
@@ -125,11 +125,14 @@ const socialLinks = [
 .footer-logo {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 300px;
 }
 
 .logo-img {
   filter: brightness(0) invert(1);
   opacity: 0.9;
+  margin: 0 auto;
 }
 
 .footer-description {
