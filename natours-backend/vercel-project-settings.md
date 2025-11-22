@@ -18,7 +18,7 @@
 ### 2. 或者使用 Vercel CLI 部署
 
 ```bash
-# 在 natours-backend 目录中运行
+# 在 travel-api-cluster-backend 目录中运行
 vercel --prod --build-env NODE_ENV=production
 ```
 
@@ -44,7 +44,7 @@ EMAIL_PORT=2525
 
 1. 访问 [railway.app](https://railway.app)
 2. 连接 GitHub 仓库
-3. 选择 `natours-backend` 目录
+3. 选择 `travel-api-cluster-backend` 目录
 4. Railway 会自动检测 Node.js 应用并部署
 
 Railway 对 Node.js 应用的支持更好，部署更简单。

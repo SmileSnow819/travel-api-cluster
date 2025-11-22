@@ -25,13 +25,13 @@ jobs:
         with:
           node-version: 20
           cache: 'npm'
-          cache-dependency-path: 'natours-frontend/package-lock.json'
+          cache-dependency-path: 'travel-api-cluster-frontend/package-lock.json'
 
       - name: Install dependencies
-        run: cd natours-frontend && npm ci
+        run: cd travel-api-cluster-frontend && npm ci
 
       - name: Build
-        run: cd natours-frontend && npm run build:prod
+        run: cd travel-api-cluster-frontend && npm run build:prod
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,7 +39,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./natours-frontend/dist
+          path: ./travel-api-cluster-frontend/dist
 
       - name: Deploy to GitHub Pages
         id: deployment

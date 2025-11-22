@@ -1,11 +1,11 @@
-# 🌍 Natours - 旅游预订平台
+# 🌍 Travel API Cluster - 旅游预订平台
 
 > 一个现代化的全栈旅游预订应用，提供丰富的旅游路线浏览、用户认证和评论功能。
 
 ## 🚀 在线演示
 
-- **前端应用**: [https://smilesnow819.github.io/natours/](https://smilesnow819.github.io/natours/)
-- **后端 API**: [访问 Natours Backend](https://natours-backend-5yd5tfcj0-smilesnow819s-projects.vercel.app/)
+- **前端应用**: [https://smilesnow819.github.io/travel-api-cluster/](https://smilesnow819.github.io/travel-api-cluster/)
+- **后端 API**: [访问 Travel API Cluster Backend](https://natours-backend-5yd5tfcj0-smilesnow819s-projects.vercel.app/)
 
 ## ✨ 功能特性
 
@@ -64,15 +64,15 @@
 ## 📁 项目结构
 
 ```
-natours/
-├── natours-backend/          # 后端API服务
+travel-api-cluster/
+├── travel-api-cluster-backend/          # 后端API服务
 │   ├── api/                  # Vercel部署入口
 │   ├── controllers/          # 控制器层
 │   ├── models/               # 数据模型
 │   ├── routes/               # 路由定义
 │   ├── utils/                # 工具函数
 │   └── config.env            # 环境配置
-├── natours-frontend/         # 前端Vue应用
+├── travel-api-cluster-frontend/         # 前端Vue应用
 │   ├── src/
 │   │   ├── components/       # Vue组件
 │   │   ├── pages/            # 页面组件
@@ -98,13 +98,13 @@ natours/
 
    ```bash
    git clone <repository-url>
-   cd natours
+   cd travel-api-cluster
    ```
 
 2. **后端设置**
 
    ```bash
-   cd natours-backend
+   cd travel-api-cluster-backend
    npm install
    cp config.env.example config.env
    # 编辑config.env配置数据库连接
@@ -114,7 +114,7 @@ natours/
 3. **前端设置**
 
    ```bash
-   cd natours-frontend
+   cd travel-api-cluster-frontend
    npm install
    npm run dev
    ```
@@ -128,14 +128,14 @@ natours/
 ### 后端部署 (Vercel)
 
 ```bash
-cd natours-backend
+cd travel-api-cluster-backend
 vercel --prod
 ```
 
 ### 前端部署 (GitHub Pages)
 
 ```bash
-cd natours-frontend
+cd travel-api-cluster-frontend
 npm run build
 # 将dist目录内容推送到GitHub Pages
 ```
@@ -224,8 +224,8 @@ npm run build
 
 ## 📞 联系方式
 
-- 项目主页: [https://smilesnow819.github.io/natours/](https://smilesnow819.github.io/natours/)
-- 问题反馈: [GitHub Issues](https://github.com/smilesnow819/natours/issues)
+- 项目主页: [https://smilesnow819.github.io/travel-api-cluster/](https://smilesnow819.github.io/travel-api-cluster/)
+- 问题反馈: [GitHub Issues](https://github.com/smilesnow819/travel-api-cluster/issues)
 
 ---
 

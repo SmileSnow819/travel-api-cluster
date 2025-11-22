@@ -1,4 +1,4 @@
-# 🏔️ Natours - 旅游平台后端API
+# 🏔️ Travel API Cluster - 旅游平台后端API
 
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![Express](https://img.shields.io/badge/Express-4.x-blue.svg)](https://expressjs.com/)
@@ -50,8 +50,8 @@
 1. **克隆项目**
 
 ```bash
-git clone https://github.com/SmileSnow819/natours-backend
-cd natours-backend
+git clone https://github.com/SmileSnow819/travel-api-cluster-backend
+cd travel-api-cluster-backend
 ```
 
 2. **安装依赖**
@@ -66,7 +66,7 @@ npm install
 ```env
 NODE_ENV=development
 PORT=8000
-DATABASE_LOCAL=mongodb://localhost:27017/natours
+DATABASE_LOCAL=mongodb://localhost:27017/travel-api-cluster
 JWT_SECRET=your-super-secret-jwt-key
 JWT_EXPIRES_IN=30d
 JWT_COOKIE_EXPIRES_IN=90
@@ -172,7 +172,7 @@ Content-Type: application/json
 ### 目录结构
 
 ```
-natours-backend/
+travel-api-cluster-backend/
 ├── controllers/          # 控制器层
 │   ├── authController.js    # 认证控制器
 │   ├── tourController.js    # 旅游控制器
