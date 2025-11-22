@@ -72,7 +72,8 @@ const deleting = ref(false);
 
 // 计算用户照片URL
 const userPhoto = computed(() => {
-  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  const basePath =
+    import.meta.env.MODE === 'production' ? '/travel-api-cluster' : '';
   return `${basePath}/img/users/${props.review.user.photo}`;
 });
 

@@ -104,7 +104,8 @@ const props = defineProps<Props>();
 
 // 计算旅游图片URL - 在 GitHub Pages 上使用相对路径
 const tourImage = computed(() => {
-  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  const basePath =
+    import.meta.env.MODE === 'production' ? '/travel-api-cluster' : '';
   return `${basePath}/img/tours/${props.tour.imageCover}`;
 });
 

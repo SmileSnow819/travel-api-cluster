@@ -282,7 +282,8 @@ const loadingReviews = ref(false);
 
 // 计算旅游图片URL - 统一处理路径
 const tourImage = (imageName: string) => {
-  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  const basePath =
+    import.meta.env.MODE === 'production' ? '/travel-api-cluster' : '';
   return `${basePath}/img/tours/${imageName}`;
 };
 
@@ -303,7 +304,8 @@ const formatDate = (dateString: string) => {
 
 // 获取导游照片URL
 const guidePhoto = (guide: { photo: string }) => {
-  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  const basePath =
+    import.meta.env.MODE === 'production' ? '/travel-api-cluster' : '';
   return `${basePath}/img/users/${guide.photo}`;
 };
 

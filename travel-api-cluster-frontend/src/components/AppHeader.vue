@@ -162,7 +162,8 @@ const user = computed(() => authStore.user);
 
 // 获取用户头像URL（后端返回的 photo 包含 'default.jpg' 或具体的用户头像文件名）
 const getUserPhotoUrl = (photo: string) => {
-  const basePath = import.meta.env.MODE === 'production' ? '/natours' : '';
+  const basePath =
+    import.meta.env.MODE === 'production' ? '/travel-api-cluster' : '';
   return `${basePath}/img/users/${photo}`;
 };
 
