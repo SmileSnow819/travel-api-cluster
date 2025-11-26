@@ -9,6 +9,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AddReview: typeof import('./src/components/AddReview.vue')['default']
+    AMapComponent: typeof import('./src/components/AMapComponent.vue')['default']
     AppFooter: typeof import('./src/components/AppFooter.vue')['default']
     AppHeader: typeof import('./src/components/AppHeader.vue')['default']
     ReviewCard: typeof import('./src/components/ReviewCard.vue')['default']

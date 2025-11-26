@@ -80,6 +80,33 @@
                 >{{ tour.ratingsAverage }} / 5</span
               >
             </div>
+
+            <!-- 地理位置信息 -->
+            <div class="overview-box-detail location-highlight">
+              <v-icon size="32" color="red" class="mr-3">mdi-map-marker</v-icon>
+              <div class="location-info">
+                <span class="overview-box-label">起始位置</span>
+                <span class="overview-box-text location-description">{{
+                  tour.startLocation.description
+                }}</span>
+                <div v-if="tour.startLocation.address" class="location-address">
+                  {{ tour.startLocation.address }}
+                </div>
+                <div class="location-coordinates">
+                  经纬度: {{ tour.startLocation.coordinates[0].toFixed(6) }},
+                  {{ tour.startLocation.coordinates[1].toFixed(6) }}
+                </div>
+              </div>
+            </div>
+
+            <!-- 旅游地点列表 -->
+            <div class="overview-box-detail">
+              <v-icon size="22" color="blue" class="mr-3">mdi-map</v-icon>
+              <span class="overview-box-label">旅游地点</span>
+              <span class="overview-box-text"
+                >{{ tour.locations.length }} 个地点</span
+              >
+            </div>
           </div>
 
           <div class="overview-box-group">
@@ -127,6 +154,26 @@
             :class="`picture-box-img--${index + 1}`"
             cover
           ></v-img>
+        </div>
+      </section>
+
+      <!-- 地图区域 -->
+      <section class="section-map">
+        <div class="map-wrapper">
+          <div class="map-header">
+            <h2 class="heading-secondary">旅游路线地图</h2>
+            <p class="map-subtitle">
+              探索精彩的旅程路线，感受每一个目的地的魅力
+            </p>
+          </div>
+          <div class="map-container">
+            <AMapComponent
+              :start-location="mapStartLocation"
+              :locations="mapLocations"
+              :map-height="500"
+              :show-controls="true"
+            />
+          </div>
         </div>
       </section>
 
@@ -270,6 +317,7 @@ import reviewService from '@/services/reviewService';
 import authService from '@/services/authService';
 import ReviewCard from '@/components/ReviewCard.vue';
 import AddReview from '@/components/AddReview.vue';
+import AMapComponent from '@/components/AMapComponent.vue';
 import type { Tour, User, Review } from '@/types/api';
 
 const route = useRoute();
@@ -328,6 +376,31 @@ const getDifficultyText = (difficulty: string) => {
   };
   return difficultyMap[difficulty] || difficulty;
 };
+
+// 转换地图数据格式
+const mapStartLocation = computed(() => {
+  if (!tour.value?.startLocation) return undefined;
+
+  const startLoc = {
+    coordinates: tour.value.startLocation.coordinates,
+    description: tour.value.startLocation.description,
+    address: tour.value.startLocation.address,
+  };
+  console.log('地图起始位置:', startLoc);
+  return startLoc;
+});
+
+const mapLocations = computed(() => {
+  if (!tour.value?.locations) return [];
+
+  const locations = tour.value.locations.map((location) => ({
+    coordinates: location.coordinates,
+    description: location.description,
+    day: location.day,
+  }));
+  console.log('地图旅游地点:', locations);
+  return locations;
+});
 
 // 预订旅游
 const bookTour = () => {
@@ -725,5 +798,249 @@ onMounted(() => {
   justify-content: center;
   width: 100%;
   height: 100%;
+}
+
+/* 地图区域样式 - 完整的Natours设计风格 */
+.section-map {
+  background-color: #f7f7f7;
+  position: relative;
+  z-index: 1000;
+  padding: calc(8rem + 9vw) 0 8rem 0;
+  /* Natours 倾斜设计 */
+  clip-path: polygon(0 9vw, 100% 0, 100% calc(100% - 9vw), 0 100%);
+  margin-top: -9vw;
+  padding-bottom: 80px;
+}
+
+.map-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.map-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.map-header .heading-secondary {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.map-header .heading-secondary::after {
+  content: '';
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #55c57a, #28b487, #7dd56f);
+  border-radius: 2px;
+}
+
+.map-subtitle {
+  font-size: 1.6rem;
+  color: #666;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+  background: linear-gradient(
+    135deg,
+    rgba(125, 213, 111, 0.05),
+    rgba(40, 180, 135, 0.05)
+  );
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid rgba(125, 213, 111, 0.2);
+  /* 轻微倾斜 */
+  clip-path: polygon(0 0, 100% 0%, 98% 100%, 0% 100%);
+}
+
+.map-container {
+  position: relative;
+  background: white;
+  border-radius: 20px;
+  padding: 1rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  /* Natours 倾斜设计 */
+  clip-path: polygon(0 0, 100% 0%, 100% 94%, 0% 100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.map-container::before {
+  content: '';
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  background: linear-gradient(135deg, #7dd56f, #28b487);
+  border-radius: 20px;
+  z-index: -1;
+  /* 倾斜边框 */
+  clip-path: polygon(0 0, 100% 0%, 100% 94%, 0% 100%);
+}
+
+.map-container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .section-map {
+    padding: calc(6rem + 6vw) 0 6rem 0;
+    clip-path: polygon(0 6vw, 100% 0, 100% calc(100% - 6vw), 0 100%);
+    margin-top: -6vw;
+  }
+
+  .map-header .heading-secondary {
+    font-size: 2.2rem;
+  }
+
+  .map-subtitle {
+    font-size: 1.4rem;
+    padding: 1rem 1.5rem;
+  }
+
+  .map-wrapper {
+    padding: 0 1rem;
+  }
+}
+
+/* 地理位置信息样式 - Natours 设计风格 */
+.location-highlight {
+  background: linear-gradient(135deg, #e8f5e8 0%, #f1f8e9 100%);
+  border-radius: 16px;
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 3px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 15px 35px rgba(40, 180, 135, 0.15);
+  position: relative;
+  /* Natours 倾斜设计 */
+  clip-path: polygon(0 0, 100% 0%, 100% 92%, 0% 100%);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.location-highlight::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #7dd56f, #28b487);
+  border-radius: 16px;
+  z-index: -1;
+  clip-path: polygon(0 0, 100% 0%, 100% 92%, 0% 100%);
+}
+
+.location-highlight:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 50px rgba(40, 180, 135, 0.25);
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.location-description {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #2e7d32;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #55c57a, #28b487);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+.location-description::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, #55c57a, #28b487);
+  border-radius: 2px;
+}
+
+.location-address {
+  font-size: 1.4rem;
+  color: #666;
+  font-style: italic;
+  background: white;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 4px solid #28b487;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.location-coordinates {
+  font-size: 1.3rem;
+  color: #2e7d32;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 10px;
+  display: inline-block;
+  border: 2px solid #7dd56f;
+  box-shadow: 0 4px 12px rgba(40, 180, 135, 0.1);
+  transition: all 0.3s ease;
+}
+
+.location-coordinates:hover {
+  transform: translateX(4px);
+  box-shadow: 0 6px 16px rgba(40, 180, 135, 0.2);
+  border-color: #55c57a;
+}
+
+/* 地图区域样式更新 */
+.section-map {
+  background-color: #fcfcfc;
+  position: relative;
+  z-index: 1000;
+  padding: 4rem 2rem;
+  /* 添加倾斜设计 */
+  clip-path: polygon(0 5vw, 100% 0, 100% calc(100% - 5vw), 0 100%);
+  margin-top: -5vw;
+}
+
+.map-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.map-container::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background: linear-gradient(
+    135deg,
+    rgba(125, 213, 111, 0.1),
+    rgba(40, 180, 135, 0.1)
+  );
+  border-radius: 20px;
+  z-index: -1;
+  /* 倾斜背景 */
+  clip-path: polygon(0 0, 100% 0%, 100% 90%, 0% 100%);
 }
 </style>
